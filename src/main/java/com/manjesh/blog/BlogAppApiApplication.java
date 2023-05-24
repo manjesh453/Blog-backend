@@ -12,7 +12,7 @@ public class BlogAppApiApplication {
 		SpringApplication.run(BlogAppApiApplication.class, args);
 	}
 	@Bean
-public ModelMapper modalMapper() {
+public ModelMapper modelMapper() {
 	return new ModelMapper();
 }
 }

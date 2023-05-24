@@ -1,0 +1,8 @@
+com.manjesh.blog
+com.manjesh.blog.controllers
+com.manjesh.blog.entities
+com.manjesh.blog.exceptions
+com.manjesh.blog.payloads
+com.manjesh.blog.repositories
+com.manjesh.blog.services
+com.manjesh.blog.services.impl

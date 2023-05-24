@@ -16,7 +16,7 @@ import com.manjesh.blog.services.UserService;
 public class UserServiceImpl implements UserService {
     @Autowired
 	private UserRepo userRepo;
-    
+    @Autowired
     private ModelMapper modelMapper;
 	
 	@Override
