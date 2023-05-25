@@ -18,6 +18,8 @@ import com.manjesh.blog.payloads.ApiResponse;
 import com.manjesh.blog.payloads.CategoryDto;
 import com.manjesh.blog.services.CategoryService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/categories")
 public class CategoryController {
@@ -26,13 +28,13 @@ public class CategoryController {
 	
 	
 	@PostMapping("/")
-	public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto categoryDto){
+	public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto categoryDto){
 		CategoryDto createCategory=this.categoryService.createCategory(categoryDto);
 		return new ResponseEntity<CategoryDto>(createCategory,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{categoryId}")
-	public ResponseEntity<CategoryDto> updateCategorty(@RequestBody CategoryDto categorydto,@PathVariable Integer categoryId){
+	public ResponseEntity<CategoryDto> updateCategorty(@Valid @RequestBody CategoryDto categorydto,@PathVariable Integer categoryId){
 	CategoryDto updateCategory=this.categoryService.updateCategory(categorydto, categoryId);
 	return new ResponseEntity<CategoryDto>(updateCategory,HttpStatus.OK);
 	}
