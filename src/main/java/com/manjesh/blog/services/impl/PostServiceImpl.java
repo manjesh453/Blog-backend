@@ -91,8 +91,9 @@ public class PostServiceImpl implements PostService{
 
 	@Override
 	public List<PostDto> searchPosts(String keyword) {
-		// TODO Auto-generated method stub
-		return null;
+	    List<Post>list=this.postRepo.findByKeyword(keyword);
+		List<PostDto>post=list.stream().map((p)->this.modelMapper.map(p, PostDto.class)).collect(Collectors.toList());
+		return post;
 	}
 
 }

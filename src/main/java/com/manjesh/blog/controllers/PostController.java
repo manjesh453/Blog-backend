@@ -1,13 +1,21 @@
 package com.manjesh.blog.controllers;
 
+import java.util.List;
+
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.manjesh.blog.payloads.ApiResponse;
 import com.manjesh.blog.payloads.PostDto;
 import com.manjesh.blog.services.PostService;
 
@@ -22,5 +30,48 @@ public class PostController {
 		PostDto createPost=this.postService.createPost(postDto, userId, categoryId);
 		return new ResponseEntity<PostDto>(createPost,HttpStatus.CREATED);
 	}
- 
+	
+	public ResponseEntity<List<PostDto>>findByKeyword(@PathVariable String keyword){
+		return ResponseEntity.ok(this.postService.searchPosts(keyword));
+	}
+    
+	@PutMapping("/post/{postId}/")
+	public ResponseEntity<PostDto>updatePost(PostDto postDto,@PathVariable Integer postId){
+		PostDto updatePost=this.postService.updatePost(postDto, postId);
+		return ResponseEntity.ok(updatePost);
+	}
+	
+	@DeleteMapping("/post/{postId}/")
+	public ResponseEntity<?>deletePost(@PathVariable Integer postId){
+	this.postService.deletePost(postId);
+	return new ResponseEntity<ApiResponse>(new ApiResponse("Post Delete Successfully",true),HttpStatus.OK);
+	}
+	@GetMapping("/post/{postId}/")
+	public ResponseEntity<PostDto>getById(@PathVariable Integer postId){
+		PostDto post=this.postService.getPostById(postId);
+		return ResponseEntity.ok(post);
+	}
+	@GetMapping("/post/")
+	public ResponseEntity<List<PostDto>>getAll(){
+		return ResponseEntity.ok(this.postService.getAllPost());
+	}
+	@GetMapping("/cat/{categoryId}/post/")
+	public ResponseEntity<List<PostDto>>getByCategory(@PathVariable Integer categoryId){
+		return ResponseEntity.ok(this.postService.getPostsByCategory(categoryId));
+	}
+	@GetMapping("/user/{userId}/post/")
+	public ResponseEntity<List<PostDto>>getByUser(@PathVariable Integer userId){
+		return ResponseEntity.ok(this.postService.getPostsByUser(userId));
+	}
+	@GetMapping("/{keyword}/")
+	public ResponseEntity<List<PostDto>>searchPost(@PathVariable String keyword){
+		return ResponseEntity.ok(this.postService.searchPosts(keyword));
+	}
 }
+
+
+
+
+
+
+
