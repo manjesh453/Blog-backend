@@ -7,9 +7,9 @@ import com.manjesh.blog.payloads.PostDto;
 
 public interface PostService {
 
-	PostDto createPost(PostDto postDto,Integer userId,Integer categoryId);
+	PostDto createPost(PostDto postDto,Integer userId,Integer categoryId,String fileName);
 	
-	PostDto updatePost(PostDto postDto,Integer postId);
+	PostDto updatePost(PostDto postDto,Integer postId,String fileName);
 	
 	void deletePost(Integer postId);
 	

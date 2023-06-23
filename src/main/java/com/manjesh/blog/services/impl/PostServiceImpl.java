@@ -31,11 +31,11 @@ public class PostServiceImpl implements PostService{
    
 	
 	@Override
-	public PostDto createPost(PostDto postDto,Integer userId,Integer categoryId) {
+	public PostDto createPost(PostDto postDto,Integer userId,Integer categoryId,String filename) {
 		User user=this.userRepo.findById(userId).orElseThrow(()->new ResourceNotFoundException("User", "UserId", userId));
         Category category=this.categoryRepo.findById(categoryId).orElseThrow(()->new ResourceNotFoundException("Category","categoryId", categoryId));		
 		Post post=this.modelMapper.map(postDto,Post.class);
-		post.setImageName("default.png");
+		post.setImageName(filename);
 		post.setDate(new Date());
 		post.setUser(user);
 		post.setCategory(category);
@@ -44,12 +44,12 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public PostDto updatePost(PostDto postDto, Integer postId) {
+	public PostDto updatePost(PostDto postDto, Integer postId,String fileName) {
 		Post post=this.postRepo.findById(postId).orElseThrow(()->new ResourceNotFoundException("Post", "PostId", postId));
 		Post p=this.modelMapper.map(postDto, Post.class);
 		post.setCategory(p.getCategory());
 		post.setContent(p.getContent());
-		post.setImageName(p.getImageName());
+		post.setImageName(fileName);
 		post.setCategory(p.getCategory());
 		Post updatePost=this.postRepo.save(post);	
 		return this.modelMapper.map(updatePost, PostDto.class);
