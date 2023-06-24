@@ -21,7 +21,6 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,7 +38,7 @@ private int id;
 private String name;
 @Column(nullable = false,length = 30)
 private String email;
-@Column(length = 255,columnDefinition = "VARCHAR(255)")
+@Column(length =120,nullable = false)
 private String password;
 @Column(nullable = false)
 private String about;
@@ -63,7 +62,6 @@ public Collection<? extends GrantedAuthority> getAuthorities() {
 }
 @Override
 public String getUsername() {
-	// TODO Auto-generated method stub
 	return this.email;
 }
 @Override

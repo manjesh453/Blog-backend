@@ -2,7 +2,6 @@ package com.manjesh.blog;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -41,11 +40,8 @@ public ModelMapper modelMapper() {
           roles.add(role);
           roles.add(role1);
           
-          List<Role>result=this.roleRepo.saveAll(roles);
+          this.roleRepo.saveAll(roles);
           
-          result.forEach(r->{
-        	  System.out.println(r.getName());
-          });
           
 			
 		}catch (Exception e) {

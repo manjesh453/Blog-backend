@@ -47,7 +47,7 @@ public class AuthController {
 		try {
 			this.authenticationManager.authenticate(authenticationToken);
 		}catch (BadCredentialsException e) {
-			throw new ApiException("Inavalid username or Password");
+			throw new ApiException("Invalid username or Password");
 		}
 		
 	}
