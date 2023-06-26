@@ -47,9 +47,6 @@ public class PostController {
 		return new ResponseEntity<PostDto>(createPost,HttpStatus.CREATED);
 	}
 	
-	public ResponseEntity<List<PostDto>>findByKeyword(@PathVariable String keyword){
-		return ResponseEntity.ok(this.postService.searchPosts(keyword));
-	}
     
 	@PutMapping("/post/{postId}/")
 	public ResponseEntity<PostDto>updatePost(@RequestParam("image")MultipartFile image,@RequestPart PostDto postDto,@PathVariable Integer postId) throws IOException{

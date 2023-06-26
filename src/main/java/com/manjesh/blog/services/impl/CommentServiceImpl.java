@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.manjesh.blog.entities.Comment;
 import com.manjesh.blog.entities.Post;
 import com.manjesh.blog.exceptions.ResourceNotFoundException;
@@ -11,7 +13,7 @@ import com.manjesh.blog.payloads.CommentDto;
 import com.manjesh.blog.repositories.CommentRepo;
 import com.manjesh.blog.repositories.PostRepo;
 import com.manjesh.blog.services.CommentService;
-
+@Service
 public class CommentServiceImpl implements CommentService{
 	@Autowired
 	private ModelMapper modelMapper;
